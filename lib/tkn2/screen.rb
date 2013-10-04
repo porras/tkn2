@@ -4,6 +4,9 @@ module Tkn2
   class Screen
     def initialize
       Ncurses.initscr
+      Ncurses.start_color
+      Ncurses.use_default_colors
+      Ncurses.bkgd(Ncurses.COLOR_PAIR(1))
       Ncurses.cbreak
       Ncurses.nl
       Ncurses.noecho
@@ -16,6 +19,7 @@ module Tkn2
         break unless deck.current
 
         Ncurses.clear
+        set_colors deck.current.options[:fg], deck.current.options[:bg]
         place_content deck.current.block
 
         case Ncurses.getch
@@ -29,7 +33,7 @@ module Tkn2
           deck.first
         end
       end
-  
+
     ensure
       Ncurses.nocbreak
       Ncurses.echo
@@ -47,5 +51,12 @@ module Tkn2
       window.refresh
     end
 
+    def set_colors(fg, bg)
+      Ncurses.init_pair(1, color_constant(fg), color_constant(bg))
+    end
+
+    def color_constant(color)
+      Ncurses.const_get("COLOR_#{color.to_s.upcase}")
+    end
   end
 end
