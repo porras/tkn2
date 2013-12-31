@@ -22,8 +22,14 @@ Main differences with tkn:
 
 ## Usage
 
-Have a `.rb` file requiring `tkn2` with a `Tkn2.deck` block. In that block you can use all the available commands.
-You'll run that file to start the presentation
+Install tkn2 if you haven't, and run the generator to create a new deck:
+
+```
+$ gem install tkn2
+$ tkn2 new 'My slides'
+```
+
+This will create a directory called `my_slides/` which will contain your deck in the file `my_slides.rb`:
 
 ```ruby
 require 'tkn2'
@@ -33,18 +39,10 @@ Tkn2.deck do
 end
 ```
 
-The easiest way to do this is to have a `Gemfile` like this:
-
-```ruby
-source 'https://rubygems.org'
-
-gem 'tkn2'
-```
-
-And then run the presentation using bundler:
+To run the presentation:
 
 ```
-$ bundle exec ruby mypresentation.rb
+$ bundle exec ruby my_slides.rb
 ```
 
 ### Available commands
@@ -121,7 +119,6 @@ That said:
 * Better control of *overflow* (currently the presentation crashes if the content doesn't fit in the screen). I'm
   playing with the idea of having *scroll*, something usually not present in graphical presentation software and that
   can be useful to present code without using a tiny font size
-* A generator
 * Colors and themes
 * Plugin system. More as an exercise, I want to try to keep the core small and simple and implement features as plugins
 * A way to compose slides with more than one element. Tools to generate content (ASCII art diagrams, etc.)

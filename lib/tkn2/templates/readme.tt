@@ -1,0 +1,8 @@
+# <%= title %>
+
+Slides made with [Tkn2](https://github.com/porras/tkn2). To watch them, clone the repo, cd into it and run:
+
+```
+$ bundle install # [only the first time]
+$ bundle exec ruby <%= filename %>.rb
+```

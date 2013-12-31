@@ -1,0 +1,5 @@
+require 'tkn2'
+
+Tkn2.deck do
+  center '<%= title %>'
+end
