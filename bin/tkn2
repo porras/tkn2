@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+require 'thor'
+require 'tkn2/version'
+
+module Tkn2
+  class Cli < Thor
+    desc 'new TITLE', 'Generates a new deck named TITLE'
+
+    def new(title)
+      NewDeck.start([title])
+    end
+  end
+
+  class NewDeck < Thor::Group
+    include Thor::Actions
+
+    argument :title
+
+    def self.source_root
+      File.join(File.dirname(__FILE__), '..', 'lib', 'tkn2')
+    end
+
+    def create_gemfile
+      template 'templates/Gemfile.tt', "#{filename}/Gemfile"
+    end
+
+    def create_deck
+      template 'templates/deck.tt', "#{filename}/#{filename}.rb"
+    end
+
+    def create_readme
+      template 'templates/readme.tt', "#{filename}/README.md"
+    end
+
+    def install_bundle
+      inside filename do
+        run 'bundle install'
+      end
+    end
+
+    private
+
+    def version
+      Tkn2::VERSION
+    end
+
+    def filename
+      @filename ||= Thor::Util.snake_case(title).gsub(/\s+/, '_')
+    end
+  end
+end
+
+Tkn2::Cli.start
