@@ -57,7 +57,8 @@ Generates a slide with the given text, centered line by line.
 
 ```ruby
 center <<-EOS
-  Tkn2 Less is more
+  Tkn2
+  Less is more
 EOS
 ```
 
