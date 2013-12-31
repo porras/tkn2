@@ -9,6 +9,12 @@ module Tkn2
     def new(title)
       NewDeck.start([title])
     end
+
+    desc 'show FILE', 'Shows the presentation in FILE'
+
+    def show(file)
+      exec "bundle exec ruby #{file}"
+    end
   end
 
   class NewDeck < Thor::Group

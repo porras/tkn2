@@ -11,9 +11,9 @@ point.
 
 Main differences with tkn:
 
-* The commands are not available in the general namespace; you need to wrap the presentation in a `Tkn2.deck` block
+* The commands are not available in the general namespace; you need to wrap the slides in a `Tkn2.deck` block
 * It's packed as a gem, and intended to use with bundler via a `Gemfile`. That may sound like overkill but, with tkn2
-  evolving, it's nice to have each presentation stored with a explicit reference to the verion of tkn2 it was written
+  evolving, it's nice to have each deck stored with a explicit reference to the verion of tkn2 it was written
   for (tkn solves this having the script vendored)
 * It uses [ncurses](http://www.gnu.org/software/ncurses/) instead of direct printing. This gets it some nice behaviour
   like autoredrawing when resizing windows or changing font size
@@ -35,14 +35,14 @@ This will create a directory called `my_slides/` which will contain your deck in
 require 'tkn2'
 
 Tkn2.deck do
-  # here goes your presentation
+  # here go your slides
 end
 ```
 
-To run the presentation:
+To run the deck:
 
 ```
-$ bundle exec ruby my_slides.rb
+$ tkn2 show ruby my_slides.rb
 ```
 
 ### Available commands
@@ -101,7 +101,7 @@ you want (read from the network, make calculations, etc.).
 
 ### Keys
 
-These are the keys you can use to navigate the presentation:
+These are the keys you can use to navigate the deck:
 
 * Down, Right, Enter, Space, Page Down, N: next slide
 * Up, Left, Backspace, Page Up, P: previous slide
@@ -117,7 +117,7 @@ That said:
 
 * (Auto)reload [1]
 * Images [1]
-* Better control of *overflow* (currently the presentation crashes if the content doesn't fit in the screen). I'm
+* Better control of *overflow* (currently the deck crashes if the content doesn't fit in the screen). I'm
   playing with the idea of having *scroll*, something usually not present in graphical presentation software and that
   can be useful to present code without using a tiny font size
 * Colors and themes
