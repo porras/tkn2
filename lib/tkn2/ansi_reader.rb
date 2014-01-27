@@ -41,8 +41,8 @@ module Tkn2
       end
 
       MAP = {
-        "00" => Curses::A_NORMAL,
-        "01" => Curses::A_BOLD,
+        "00" => Ncurses::A_NORMAL,
+        "01" => Ncurses::A_BOLD,
       }
 
       def char(c)

@@ -9,6 +9,7 @@ require "tkn2/utils"
 module Tkn2
   def self.deck(&block)
     Deck.new.tap do |deck|
+      deck.options fg: :white, bg: :black
       deck.instance_eval(&block)
     end.present!
   end

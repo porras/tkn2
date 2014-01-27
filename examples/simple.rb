@@ -1,7 +1,11 @@
 require 'tkn2'
 
 Tkn2.deck do
+  options bg: :white, fg: :black
+
   center "wadus üníçöde"
+
+  options fg: :red
 
   code <<-EOS
     require 'application_controller'
@@ -14,7 +18,9 @@ Tkn2.deck do
     end
   EOS
 
-  section "This is a section" do
+  options bg: :green
+
+  section "This is a section", fg: :blue do
     center <<-EOS
       Hola
       Hola

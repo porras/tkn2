@@ -1,9 +1,12 @@
 module Tkn2
   class Deck
+    attr_reader :options
+
     def initialize
       @slides = []
       @current = 0
       @renderer = Screen.new
+      @options = {}
     end
 
     def present!
@@ -34,11 +37,15 @@ module Tkn2
       @current == @slides.size - 1
     end
 
+    def options(options = {})
+      @options.merge!(options)
+    end
+
     private
 
     def self.slide_method(name, klass)
       define_method name do |*args|
-        add_slide klass.new(*args)
+        add_slide klass.new(self, *args)
       end
     end
 
@@ -51,8 +58,8 @@ module Tkn2
     slide_method :block,            Slide
     slide_method :section_header,   Slide::SectionHeader
 
-    def section(title, &block)
-      section_header title
+    def section(*args, &block)
+      section_header *args
       yield
     end
   end

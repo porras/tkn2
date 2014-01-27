@@ -1,6 +1,10 @@
 module Tkn2
   class Slide
-    def initialize(*args)
+    attr_reader :options
+
+    def initialize(deck, *args)
+      @deck = deck
+      @options = deck.options.merge(args.last.is_a?(Hash) ? args.last : {})
       @args = args
     end
 
